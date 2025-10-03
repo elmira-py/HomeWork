@@ -20,6 +20,7 @@ def mask_account_card(info: str) -> str:
 
     return f"{name} {masked}"
 
+
 def get_date(date_incorrect: str) -> str:
     """Функция возвращает строку с датой в формате "ДД.ММ.ГГГГ"""
     year = date_incorrect[0:4]
