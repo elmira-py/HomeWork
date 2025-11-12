@@ -16,7 +16,7 @@ SSH key - git@github.com:elmira-py/HomeWork.git
 Маскирует номер банковской карты в формате: XXXX XX** **** XXXX
 Пример: 7000792289606361 → 7000 79** **** 6361
 
-**get_mask_account(account_number: str) -> str**
+**get_mask_account(number_account: str) -> str**
 
 Маскирует номер счета в формате: **XXXX
 **Пример:** 73654108430135874305 → **4305
@@ -24,25 +24,25 @@ SSH key - git@github.com:elmira-py/HomeWork.git
 ## Модуль widget
 Содержит функции для работы с банковскими данными:
 
-**mask_account_card(card_or_account_data: str) -> str**
+**mask_account_card(info: str) -> str**
 
 Автоматически определяет тип данных (карта или счет) и применяет соответствующую маску.
 **Пример для карты:** Visa Platinum 7000792289606361 → Visa Platinum 7000 79** **** 6361
 **Пример для счета:** Счет 73654108430135874305 → Счет **4305
 
-**get_date(data_info: str) -> str**
+**get_date(date_incorrect: str) -> str**
 Функция берёт данные даты и времени в формате "2024-03-11T02:26:18.671407"
 и возвращает только дату в формате 'ДД.ММ.ГГГГ'"""
 
 ## Модуль processing
  Модуль processing предоставляет функции для фильтрации и сортировки банковских операций.
 
-**filter_by_state(operations: list, state: str = 'EXECUTED') -> list**
+**filter_by_state(transactions: list[dict], state: str = "EXECUTED") -> list[dict]**
 Фильтрует список операций по статусу выполнения.
 
 **Параметры:**
 
-operations: Список словарей с операциями
+transactions: Список словарей с операциями
 state: Статус для фильтрации. По умолчанию 'EXECUTED'
 
 **Пример использования:**
@@ -55,19 +55,19 @@ operations = [
     ]
 
 # Фильтрация по статусу 'EXECUTED' (по умолчанию)
-executed_operations = filter_by_state(operations)
+executed _operations = filter_by_state(operations)
 # [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}]
 
 # Фильтрация по статусу 'CANCELED'
 canceled_operations = filter_by_state(operations, 'CANCELED')
 # [{'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}]
 ```
-**sort_by_date(operations: list, reverse: bool = True) -> list**
+**sort_by_date(transactions: list[dict],reverse: bool = True) -> list[dict]**
 Сортирует список операций по дате.
 
 **Параметры:**
 
-operations: Список словарей с операциями
+transactions: Список словарей с операциями
 reverse: Порядок сортировки(True (по умолчанию) - по убыванию, False - по возрастанию(сначала самые старые))
 
 Пример использования:
