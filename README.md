@@ -30,31 +30,49 @@ SSH key - git@github.com:elmira-py/HomeWork.git
 **Пример для карты:** Visa Platinum 7000792289606361 → Visa Platinum 7000 79** **** 6361
 **Пример для счета:** Счет 73654108430135874305 → Счет **4305
 
+feature/tests
 **def get_date(date_string: str) -> str**
+=======
+**get_date(data_info: str) -> str**
+develop
 Функция берёт данные даты и времени в формате "2024-03-11T02:26:18.671407"
 и возвращает только дату в формате 'ДД.ММ.ГГГГ'"""
 
 ## Модуль processing
  Модуль processing предоставляет функции для фильтрации и сортировки банковских операций.
 
+feature/tests
 **filter_by_state(transactions: list, state: str = 'EXECUTED') -> list**
 Фильтрует список операций по статусу выполнения.
 
 **Параметры:**
 
 transactions: Список словарей с операциями
+=======
+**filter_by_state(operations: list, state: str = 'EXECUTED') -> list**
+Фильтрует список операций по статусу выполнения.
+
+**Параметры:**
+
+operations: Список словарей с операциями
+develop
 state: Статус для фильтрации. По умолчанию 'EXECUTED'
 
 **Пример использования:**
 ```
 from processing import filter_by_state
 
+feature/tests
 transactions = [
+=======
+operations = [
+develop
     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
     {'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}
     ]
 
 # Фильтрация по статусу 'EXECUTED' (по умолчанию)
+feature/tests
 executed_operations = filter_by_state(transactions)
 # [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}]
 
@@ -68,16 +86,35 @@ canceled_operations = filter_by_state(transactions, 'CANCELED')
 **Параметры:**
 
 transactions: Список словарей с операциями
+=======
+executed_operations = filter_by_state(operations)
+# [{'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'}]
+
+# Фильтрация по статусу 'CANCELED'
+canceled_operations = filter_by_state(operations, 'CANCELED')
+# [{'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'}]
+```
+**sort_by_date(operations: list, reverse: bool = True) -> list**
+Сортирует список операций по дате.
+
+**Параметры:**
+
+operations: Список словарей с операциями
+develop
 reverse: Порядок сортировки(True (по умолчанию) - по убыванию, False - по возрастанию(сначала самые старые))
 
 Пример использования:
 ```
+feature/tests
 transactions = [
+=======
+operations = [
+develop
     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
     {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}
 ]
 
-# Сортировка по убыванию (сначала новые)
+# Сортировка по убыванию (сначала новые) feature/tests
 sorted_desc = sort_by_date(transactions)
 # [{'id': 41428829, ...}, {'id': 939719570, ...}]
 
@@ -104,6 +141,19 @@ pytest
 
 # Разработка:
  
+=======
+sorted_desc = sort_by_date(operations)
+# [{'id': 41428829, ...}, {'id': 939719570, ...}]
+
+# Сортировка по возрастанию (сначала старые)
+sorted_asc = sort_by_date(operations, reverse=False)
+# [{'id': 939719570, ...}, {'id': 41428829, ...}]
+```
+
+
+# Разработка:
+
+ develop
 + Проект находится в активной разработке. В ближайших планах:
 
 + Добавление новых модулей для расширения функционала
