@@ -14,11 +14,17 @@ def test_log():
 
 
 @log()
-def add(x, y):
+def my_function(x, y):
     return x + y
 
 
-# Тест
-def test_add_logs_to_console(capsys):
+def test_log_add():
+    result = my_function(1, 2)
+    assert result == 3
+
+
+def test_my_function(capsys):
+    result = my_function(1, 2)
     captured = capsys.readouterr()
-    assert "" in captured.out
+    assert result == 3
+    assert "my_function ok" in captured.out
