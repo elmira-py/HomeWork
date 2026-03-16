@@ -29,7 +29,7 @@ def get_date(date_string: str) -> str:
         return ""
 
     # Проверяем, что на нужных местах стоят дефисы, например "2024-03-11T02:26:18.671407"
-    if date_string[4] != '-' or date_string[7] != '-':
+    if date_string[4] != "-" or date_string[7] != "-":
         return ""
 
     year = date_string[0:4]

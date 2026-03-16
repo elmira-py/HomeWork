@@ -9,7 +9,7 @@ def get_mask_card_number(card_number: str) -> str:
 
 def get_mask_account(number_account: str) -> str:
     """Функция принимает на вход номер счета (20 цифр) и возвращает его маску в формате **XXXX, где
-     XXXX - последние 4 цифры счета"""
+    XXXX - последние 4 цифры счета"""
     if len(number_account) != 20 or not number_account.isdigit():
         raise ValueError("Номер счета должен содержать только 20 цифр")
 
